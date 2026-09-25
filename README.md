@@ -1,126 +1,182 @@
 <div align="center">
 
-<img src="docs/assets/dayweave-banner.svg" alt="Dayweave — Your days, connected. Code, music, discoveries, and personal moments." width="100%" />
+<img src="docs/assets/dayweave-banner.svg" alt="Dayweave — Your days, connected." width="100%" />
 
 # Dayweave
 
-**A personal activity journal that brings your digital life into one thoughtful timeline.**
+**Your days, connected.**
 
-[![CI](https://github.com/KhushiShah-swe/PersonalTimeline/actions/workflows/ci.yml/badge.svg)](https://github.com/KhushiShah-swe/PersonalTimeline/actions/workflows/ci.yml)
+A personal activity journal for your code, music, discoveries, and everyday moments.
+
+[![CI](https://github.com/KhushiShah-swe/Dayweave/actions/workflows/ci.yml/badge.svg)](https://github.com/KhushiShah-swe/Dayweave/actions/workflows/ci.yml)
 ![React](https://img.shields.io/badge/React-18-294b3d?style=flat-square)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-54794e?style=flat-square)
 ![.NET](https://img.shields.io/badge/.NET-8-294b3d?style=flat-square)
 ![SQLite](https://img.shields.io/badge/SQLite-EF_Core-54794e?style=flat-square)
 
-[Explore locally](#try-the-demo-in-two-minutes) · [Architecture](docs/ARCHITECTURE.md) · [API & setup](docs/SETUP.md) · [Project evolution](docs/PROJECT_NOTES.md)
+[Features](#features) · [Getting started](#getting-started) · [Technology](#technology) · [Documentation](#documentation)
 
 </div>
 
-## Why Dayweave?
+## Overview
 
-A commit, a favorite song, a video that taught you something, a moment you wrote down: they usually live in separate places. Dayweave brings them into one chronological journal so the activity around a day can become a story worth revisiting.
+Dayweave brings activity from GitHub, Spotify, and YouTube together with moments you add yourself. Browse everything in one chronological timeline, revisit a particular day, and see how your activity changes throughout the week.
 
-**Dayweave** pairs a React/TypeScript interface with a C#/.NET API, account-scoped persistence, and provider adapters for GitHub, Spotify, and YouTube.
+The dashboard summarizes your entries, active days, and activity sources. Search and date filters help you find specific moments, while connected accounts keep supported activity in sync. Each signed-in user has a separate timeline and provider connections.
 
-## Try the demo in two minutes
+## Features
 
-Requires **Node.js 22.13 or later**. Node 22 is used in CI.
+| Feature | Description |
+| --- | --- |
+| Activity dashboard | View entry counts, active days, recent moments, source breakdowns, and a seven-day activity chart. |
+| Unified timeline | Browse activity grouped by local calendar date, with newest-first or oldest-first sorting. |
+| Personal moments | Create, edit, and delete manual entries with a title, description, date, type, and category. |
+| Search and filters | Combine text search, activity source, and date range to find relevant entries. |
+| Connected accounts | Sign in with GitHub and connect Spotify or YouTube through OAuth. |
+| Activity sync | Import supported provider activity on demand or through the hourly background sync. |
+| JSON export | Download the entries matching your current timeline filters. |
+| Sample data mode | Explore the app with fictional activity and save changes in your browser. |
+| Responsive interface | Use layouts for desktop and mobile, keyboard focus indicators, and reduced-motion support. |
+
+## Integrations
+
+| Source | Timeline activity |
+| --- | --- |
+| GitHub | Supported events from the account's recent activity response. |
+| Spotify | Recently played tracks. |
+| YouTube | Up to ten liked-video playlist items per sync. |
+| Manual entries | Notes, achievements, and other moments you add directly. |
+
+Provider connections require configured OAuth credentials and account consent. Available history depends on each provider's API response limits, permissions, and quotas. Imported entries can be deleted; editing is available for manual entries.
+
+## Technology
+
+| Layer | Tools |
+| --- | --- |
+| Frontend | React 18, TypeScript, React Router, Vite, CSS |
+| Client state and requests | React Context, Axios, localStorage |
+| Backend | C#, .NET 8 Minimal APIs, JWT bearer authentication, OAuth |
+| Database | SQLite, Entity Framework Core 9, migrations |
+| Synchronization | Typed HTTP clients, hosted background service, shared sync coordinator |
+| Testing | Vitest, React Testing Library, xUnit, Moq, WebApplicationFactory |
+| CI | GitHub Actions |
+
+## Getting started
+
+### Prerequisites
+
+- **Node.js 22.13 or later** and npm.
+- **.NET 8 SDK** to run the API.
+- A **GitHub OAuth application** for account sign-in.
+- Optional **Spotify** and **Google/YouTube** OAuth credentials for those connections.
+
+The API uses SQLite, so no separate database server is required. Sample data mode only needs Node.js and npm.
+
+### Clone the repository
 
 ```sh
-git clone https://github.com/KhushiShah-swe/PersonalTimeline.git
-cd PersonalTimeline/personal-timeline-client
+git clone https://github.com/KhushiShah-swe/Dayweave.git
+cd Dayweave
+```
+
+### Start the frontend
+
+```sh
+cd personal-timeline-client
 npm ci
 npm run dev
 ```
 
-Open **http://localhost:3000** and choose **Explore the demo**.
+Open **[http://localhost:3000](http://localhost:3000)**.
 
-The demo needs no API, database, OAuth account, or secret. It uses **fictional sample activity**, and edits persist in this browser. It does not connect to real provider accounts. Google Fonts may load for typography; system font fallbacks work offline.
+Choose **Explore the demo** to use fictional sample activity immediately. You can add, edit, filter, delete, and export entries. Changes stay in the current browser and remain separate from signed-in account data.
 
-Try this walkthrough:
+To use connected accounts, keep the frontend running and complete the API setup below.
 
-1. Explore the overview and its activity counts and seven-day chart.
-2. Open **Timeline**, search for a moment, and filter by source or date.
-3. Use **Add a moment**, then edit it and verify it survives a refresh.
-4. Export the currently filtered timeline as JSON.
-5. Open **Connections** to inspect the provider cards or reset the demo.
+### Configure and start the API
 
-For real account integration, follow the [full-stack setup guide](docs/SETUP.md).
-
-## What it does
-
-| Area | Implemented behavior |
-| --- | --- |
-| Overview | Counts actual entries, active dates, sources, and the last seven days of activity |
-| Timeline | Groups activity by local calendar day; searches titles, descriptions, categories, and types |
-| Filtering | Combines source, inclusive date range, search, and ascending/descending order |
-| Personal moments | Validated add/edit forms, native modal dialogs, explicit delete confirmation |
-| Export | Downloads the visible filtered entries as structured JSON |
-| Demo workspace | Fictional data, local persistence, full manual CRUD, and a reset option |
-| Real accounts | GitHub sign-in; Spotify and YouTube OAuth connections |
-| Synchronization | On-demand and hourly provider sync with serialized SQLite operations |
-| Access control | Bearer authorization and per-user queries; imported entries cannot be edited |
-| Interface | Responsive navigation, visible keyboard focus, reduced-motion support, loading/error/empty states |
-
-**Provider boundaries:** GitHub imports supported events from its latest events response; Spotify imports recently played tracks; YouTube imports up to ten liked-video playlist items per sync. Provider credentials, permissions, history windows, and availability govern real sync. This is not a complete lifetime archive or a real-time streaming service.
-
-## Built with
-
-| Layer | Technology |
-| --- | --- |
-| Client | React 18, TypeScript, React Router, Vite, CSS |
-| Client data | React Context, Axios, localStorage for the demo and bearer session |
-| API | C#, .NET 8 Minimal APIs, JWT bearer authentication, GitHub OAuth |
-| Persistence | SQLite, Entity Framework Core 9, committed migrations |
-| Sync | Typed HttpClient provider adapters, BackgroundService, a shared sync coordinator |
-| Tests | Vitest, React Testing Library, xUnit, Moq, WebApplicationFactory |
-| Automation | GitHub Actions: install, test, type-check, build, and upload the client build artifact |
-
-## Repository guide
-
-| Path | Purpose |
-| --- | --- |
-| `personal-timeline-client/src/pages/` | Overview, timeline, login, and connections |
-| `personal-timeline-client/src/components/` | Shared navigation, entry cards, and modal editor |
-| `personal-timeline-client/src/context/` | Session and timeline state; real/demo data paths |
-| `personal-timeline-client/src/lib/` | Demo data, filtering, dates, URLs, session decoding, and HTTP client |
-| `PersonalTimeline.API/` | Minimal API, models, migrations, validation, and OAuth/sync services |
-| `PersonalTimeline.Tests/` | API integration, provider parsing, validation, and OAuth correlation tests |
-| `docs/` | Setup, architecture, tradeoffs, and project evolution |
-
-
-## Run the checks
+In another terminal, from the repository root:
 
 ```sh
-# From personal-timeline-client/
+dotnet restore PersonalTimeline.sln
+cd PersonalTimeline.API
+
+dotnet user-secrets set "Jwt:Key" "YOUR_RANDOM_SECRET_AT_LEAST_32_BYTES"
+dotnet user-secrets set "Authentication:GitHub:ClientId" "YOUR_GITHUB_CLIENT_ID"
+dotnet user-secrets set "Authentication:GitHub:ClientSecret" "YOUR_GITHUB_CLIENT_SECRET"
+
+dotnet run
+```
+
+Replace the placeholders with your own values. Generate a random JWT signing key of at least 32 bytes. Store credentials with user secrets or server environment variables; keep them out of committed files and frontend configuration.
+
+For the default local setup, register **`http://localhost:5167/signin-github`** as the GitHub OAuth callback URL.
+
+The API applies its committed migrations at startup and creates the local SQLite database. Return to the frontend and choose **Sign in with GitHub**.
+
+| Service | Local URL |
+| --- | --- |
+| Frontend | [http://localhost:3000](http://localhost:3000) |
+| API | [http://localhost:5167](http://localhost:5167) |
+| Health check | [http://localhost:5167/health](http://localhost:5167/health) |
+| Swagger, in Development | [http://localhost:5167/swagger](http://localhost:5167/swagger) |
+
+The frontend uses `http://localhost:5167` as its default API origin. To change it, set `VITE_API_URL` in `personal-timeline-client/.env.local`. Update the API's `Frontend:Url` setting and OAuth callback configuration when changing application origins.
+
+See the [setup guide](docs/SETUP.md) for Spotify and YouTube credentials, callback URLs, configuration options, and troubleshooting.
+
+## Data and synchronization
+
+- Account entries are stored in SQLite and scoped to the authenticated user.
+- Imported activity is deduplicated per user, provider, and external event.
+- Manual entries are validated by the API before they are saved.
+- Dates are stored and returned in UTC; the interface displays and filters by local calendar dates.
+- Manual sync and the hourly worker coordinate database writes. The API must be running for scheduled syncs.
+- Disconnecting a provider removes its connection and imported entries while keeping manual entries.
+- Sample data and edits are stored in the current browser and can be reset from **Connections**.
+
+## Testing and builds
+
+Run frontend tests and create the production client build:
+
+```sh
+cd personal-timeline-client
 npm test
 npm run build
+```
 
-# From the repository root, with the .NET 8 SDK installed
+The build performs TypeScript checking and writes the client assets to `personal-timeline-client/dist/`.
+
+Run backend tests from the repository root:
+
+```sh
 dotnet restore PersonalTimeline.sln
 dotnet test PersonalTimeline.sln --configuration Release
 ```
 
-Tests exercise demo CRUD and persistence, combined filters, expired sessions, unsafe links, API ownership boundaries, validation, callback state rejection, and multi-user external-event uniqueness. The workflow badge above reports the current default-branch result.
+Tests cover timeline editing and persistence, search and filters, session expiry, input validation, account isolation, OAuth state handling, and imported-event deduplication.
 
-Automated tests do not prove every browser layout or live OAuth integration. Desktop/mobile visual checks and real provider consent flows remain a manual verification step. See the [validation notes](docs/PROJECT_NOTES.md#validation).
+[GitHub Actions](https://github.com/KhushiShah-swe/Dayweave/actions/workflows/ci.yml) runs the frontend tests, client build, and backend tests on pushes to `main` and pull requests. It also uploads the client build and API test results as workflow artifacts. Live provider authorization flows require separate checks with configured accounts.
 
-## Engineering choices worth discussing
+## Project structure
 
-- **One product, two data paths:** a real authenticated API and an explicit browser-only demo let reviewers explore the same interface without provisioning credentials.
-- **Dates mean what users expect:** edits convert local date/time inputs to UTC; the API returns UTC timestamps, and filtering uses local calendar dates.
-- **User-scoped deduplication:** `(UserId, SourceApi, ExternalId)` allows two people to import the same external event without colliding.
-- **Single-use OAuth state:** random, expiring nonces are bound to the user, provider, and initiating browser instead of exposing a raw user ID as state.
-- **Honest connection states:** demo cards say “Sample data,” provider failures surface as failures, and counts come from loaded activity.
+| Path | Contents |
+| --- | --- |
+| `personal-timeline-client/src/pages/` | Dashboard, timeline, connections, login, and callback views |
+| `personal-timeline-client/src/components/` | Navigation, entry cards, dialogs, and shared interface elements |
+| `personal-timeline-client/src/context/` | Authentication and timeline state |
+| `personal-timeline-client/src/lib/` | API client, sample data, filtering, dates, and session utilities |
+| `PersonalTimeline.API/` | API endpoints, models, database migrations, authentication, and provider services |
+| `PersonalTimeline.Tests/` | Backend unit and integration tests |
+| `.github/workflows/` | Continuous integration |
+| `docs/` | Setup and technical documentation |
 
-## Scope and next steps
+## Documentation
 
-Dayweave is a **portfolio prototype**, not a hosted production service. Before deployment with real personal data, add encrypted provider-token storage, stronger browser session protections, rate limiting, operational monitoring, and durable/distributed OAuth correlation and sync coordination. The current state store and semaphore are designed for one API process. See [architecture and limitations](docs/ARCHITECTURE.md).
+- [Setup guide](docs/SETUP.md): configuration, OAuth callbacks, API routes, and troubleshooting.
+- [Architecture](docs/ARCHITECTURE.md): data flow, authentication, persistence, and deployment constraints.
+- [Contributing](CONTRIBUTING.md): development workflow and contribution guidelines.
 
-Planned work is tracked in [the roadmap](docs/ROADMAP.md).
+## Author
 
-## Authorship & project history
-
-This portfolio edition is maintained by **[Khushi Shah](https://github.com/KhushiShah-swe)**. It evolves the supplied PersonalTimeline capstone codebase. The original credit is retained in [AUTHORS.md](AUTHORS.md), and the Dayweave enhancements are documented in [PROJECT_NOTES.md](docs/PROJECT_NOTES.md).
-
-The Dayweave edition adds the refreshed interface, interactive demo, documentation, and reliability improvements described above.
+**[Khushi Shah](https://github.com/KhushiShah-swe)**
