@@ -35,11 +35,4 @@ The GitHub Actions workflow runs the client tests and production build plus the 
 
 A cloud-browser policy prevented local preview access during preparation. **Desktop/mobile screenshots, visual layout review, and live provider OAuth/sync have not been verified by this workflow.** The repository banner is an identity graphic, not a screenshot. Before recording a new walkthrough, manually check the actual app at desktop and phone widths, keyboard navigation, dialogs, and configured provider consent flows.
 
-## Interview discussion prompts
 
-- Why keep demo and authenticated data paths behind the same context interface?
-- How can one user's deduplication key accidentally block another user's import?
-- Why is a raw user ID unsafe as OAuth state, and what additional browser binding is needed?
-- Why does the UI group by local date while the API stores and returns UTC?
-- What changes when this SQLite prototype grows into a multi-instance service?
-- Which parts are inherited foundation, and which improvements belong to the Dayweave portfolio edition?
