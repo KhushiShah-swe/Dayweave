@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalTimeline.API", "PersonalTimeline.API\PersonalTimeline.API.csproj", "{74B74193-7B62-4379-BB0D-38DC2A271F9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalTimeline.Tests", "PersonalTimeline.Tests\PersonalTimeline.Tests.csproj", "{4A53D1C0-5A7D-46F9-9B5B-42A96732A6E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74B74193-7B62-4379-BB0D-38DC2A271F9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B74193-7B62-4379-BB0D-38DC2A271F9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B74193-7B62-4379-BB0D-38DC2A271F9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B74193-7B62-4379-BB0D-38DC2A271F9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A53D1C0-5A7D-46F9-9B5B-42A96732A6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A53D1C0-5A7D-46F9-9B5B-42A96732A6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A53D1C0-5A7D-46F9-9B5B-42A96732A6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A53D1C0-5A7D-46F9-9B5B-42A96732A6E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

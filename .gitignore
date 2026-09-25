@@ -1,0 +1,35 @@
+# Dependencies and build output
+**/node_modules/
+**/dist/
+**/bin/
+**/obj/
+**/coverage/
+**/TestResults/
+**/playwright-report/
+**/test-results/
+# Local credentials, databases, and tooling
+.env
+.env.*
+!.env.example
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/secrets.json
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.pfx
+*.pem
+*.key
+.vs/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.user
+*.suo
+*.log
+# Original large recordings / unlicensed background media
+*.mp4
+*.zip
