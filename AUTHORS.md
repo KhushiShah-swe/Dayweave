@@ -1,6 +1,13 @@
-# Authors and provenance
+# Authors
 
-- **Khushi Shah** — maintainer of this GitHub portfolio edition and the Dayweave enhancement work documented in [project notes](docs/PROJECT_NOTES.md).
+## Khushi Shah
 
+**Software Engineer · Dayweave Maintainer**
 
-Dayweave continues the existing React/.NET/SQLite project and provider adapters. The original demo recording was used as implementation context.
+Khushi Shah is a software engineer with experience in full-stack web development and backend services. Her technical background includes Java, Spring Boot, React, REST APIs, and relational databases, with work spanning database integration, automated testing, and CI/CD.
+
+She is pursuing a Master of Science in Computer Science at DePaul University in Chicago. Her work focuses on reliable applications, maintainable code, and clear user interfaces.
+
+Khushi maintains Dayweave, a personal activity timeline built with React, TypeScript, .NET, and SQLite.
+
+**GitHub:** [KhushiShah-swe](https://github.com/KhushiShah-swe)
