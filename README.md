@@ -20,7 +20,7 @@
 
 A commit, a favorite song, a video that taught you something, a moment you wrote down: they usually live in separate places. Dayweave brings them into one chronological journal so the activity around a day can become a story worth revisiting.
 
-Originally named **PersonalTimeline**, this portfolio edition pairs a React/TypeScript interface with a C#/.NET API, account-scoped persistence, and provider adapters for GitHub, Spotify, and YouTube.
+**Dayweave** pairs a React/TypeScript interface with a C#/.NET API, account-scoped persistence, and provider adapters for GitHub, Spotify, and YouTube.
 
 ## Try the demo in two minutes
 
@@ -88,7 +88,6 @@ For real account integration, follow the [full-stack setup guide](docs/SETUP.md)
 | `PersonalTimeline.Tests/` | API integration, provider parsing, validation, and OAuth correlation tests |
 | `docs/` | Setup, architecture, tradeoffs, and project evolution |
 
-The existing .NET project and folder names are retained to preserve solution and migration identity. **Dayweave** is the product name; the repository slug is currently **PersonalTimeline**.
 
 ## Run the checks
 
