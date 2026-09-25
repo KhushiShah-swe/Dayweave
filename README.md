@@ -122,6 +122,6 @@ Planned work is tracked in [the roadmap](docs/ROADMAP.md).
 
 ## Authorship & project history
 
-This portfolio edition is maintained by **[Khushi Shah](https://github.com/KhushiShah-swe)**. It evolves the supplied PersonalTimeline capstone codebase; that codebase's original README credits **Jayesh Patil**. The original credit is retained in [AUTHORS.md](AUTHORS.md), and the Dayweave enhancements are documented in [PROJECT_NOTES.md](docs/PROJECT_NOTES.md).
+This portfolio edition is maintained by **[Khushi Shah](https://github.com/KhushiShah-swe)**. It evolves the supplied PersonalTimeline capstone codebase. The original credit is retained in [AUTHORS.md](AUTHORS.md), and the Dayweave enhancements are documented in [PROJECT_NOTES.md](docs/PROJECT_NOTES.md).
 
 The Dayweave edition adds the refreshed interface, interactive demo, documentation, and reliability improvements described above.
